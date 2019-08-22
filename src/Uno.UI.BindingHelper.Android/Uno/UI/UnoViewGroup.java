@@ -335,6 +335,14 @@ public abstract class UnoViewGroup
 		return false;
 	}
 
+	public final void setNativeIsHitTestVisible(boolean hitTestVisible) { _isHitTestVisible = hitTestVisible; }
+	public /* hidden to C# */ final boolean getNativeIsHitTestVisible() { return _isHitTestVisible; }
+
+	public final void setNativeIsEnabled(boolean isEnabled) { _isEnabled = isEnabled; }
+	public /* hidden to C# */ final boolean getNativeIsEnabled() { return _isEnabled; }
+
+	public /* protected in C# */ abstract boolean nativeHitCheck();
+
 	/**
 	 * Call this method if a view is to be laid out outside of a framework layout pass, to ensure that requestLayout() requests are captured
 	 * and propagated later. (Equivalent of ViewRootImpl.requestLayoutDuringLayout())
@@ -347,7 +355,7 @@ public abstract class UnoViewGroup
 	 * This should always be called immediately after {{@link #startLayoutingFromMeasure()}} has been called.
 	 */
 	public static void endLayoutingFromMeasure() {
-			_isLayoutingFromMeasure = false;
+		_isLayoutingFromMeasure = false;
 	}
 
 	/**
@@ -372,14 +380,6 @@ public abstract class UnoViewGroup
 			callToRequestLayout.clear();
 		}
 	}
-
-	public final void setNativeIsHitTestVisible(boolean hitTestVisible) { _isHitTestVisible = hitTestVisible; }
-	public /* hidden to C# */ final boolean getNativeIsHitTestVisible() { return _isHitTestVisible; }
-
-	public final void setNativeIsEnabled(boolean isEnabled) { _isEnabled = isEnabled; }
-	public /* hidden to C# */ final boolean getNativeIsEnabled() { return _isEnabled; }
-
-	public /* protected in C# */ abstract boolean nativeHitCheck();
 
 	protected final void onAttachedToWindow()
 	{
